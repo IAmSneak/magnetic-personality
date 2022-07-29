@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "itemmagnet",
+  "name": "Item Magnet",
+  "version": "${version}",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.gmail.sneakdevs.itemmagnet.ItemMagnet"
+    ]
+  }
+}
