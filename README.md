@@ -1,8 +1,5 @@
-They've always said "the devil is in the details" or "god is in the details" but little do
-they know that *I* am in the details.
+I've always been told "EW WHO ARE YOU GET AWAY!!!!" and "WHY ARE YOU FLIRTING WITH A BEAR???". These people must just be too like me so that's why they run away. But ever since I've moved all the way up north these bears are much more polar. They love me and say that I am attractive and magnetic. They just can't get away from me. It might be them wanting to eat me, but hey wouldn't be the first time! I lost my leg in an accident trying to collect items in minecraft, so that's why I found a magnet mod, but alas it was discontinued! I knew what had to be done, I get a really strong magnet and rubbed it against my computer. Then I had to get a new computer and updated it, with a few changes to make it simpler. Don't let the puns repel you- once you touch this mod you'll never be able to get away! Those two-faced bears will never stop you with this mod on your pole!
 
-I believe what makes a game great is those tiny things to make life just slightly nicer or
-those things that happen very rarely that just make you feel good when you find them,
-so this mod does just that. Also has some small tweaks that I needed in my server.
+TLDR; Don't flirt with bears and it adds an item magnet
 
-Everything should be configurable in a config by release.
+Continuation of: https://www.curseforge.com/minecraft/mc-mods/magnet-for-fabric
