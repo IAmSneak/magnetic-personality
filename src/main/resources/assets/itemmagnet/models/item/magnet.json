@@ -1,6 +1,6 @@
 {
-	"parent": "item/handheld",
+	"parent": "minecraft:item/generated",
 	"textures": {
-		"layer0": "itemmagnet:items/magnet"
+		"layer0": "itemmagnet:item/magnet"
 	}
 }

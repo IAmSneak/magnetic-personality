@@ -6,7 +6,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.gmail.sneakdevs.itemmagnet.ItemMagnet"
+      "com.gmail.sneakdevs.itemmagnet.ItemMagnetMod"
     ]
   }
 }
