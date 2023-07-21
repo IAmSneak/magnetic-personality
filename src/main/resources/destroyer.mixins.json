@@ -8,7 +8,7 @@
     "BlocksMixin",
     "FernBlockMixin",
     "GrassBlockMixin",
-    "SandBlockMixin",
+    "SheepEntityMixin",
     "TallPlantBlockMixin"
   ],
   "injectors": {

@@ -22,7 +22,7 @@ public class BifronicHelper {
         if (random.nextInt(world.getGameRules().getInt(DestroyerGameRules.BIFRONIC_SPREAD_CHANCE)) != 0) {
             return false;
         }
-        if (Math.abs(pos.getX()) > 1500 || Math.abs(pos.getZ()) > 1500 || !world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || world.getBiome(pos).matchesId(new Identifier("mushroom_fields")) || world.getBiome(pos).matchesId(new Identifier("primordial_waters"))) {
+        if (world.getBiome(pos).matchesId(new Identifier("primordial_waters")) || Math.abs(pos.getX()) > 1500 || Math.abs(pos.getZ()) > 1500 || !world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || (Math.abs(pos.getX()) + Math.abs(pos.getZ()) > 900 && world.getBiome(pos).matchesId(new Identifier("mushroom_fields")))) {
             if (((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random) != null) {
                 world.setBlockState(pos, ((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random).getDefaultState());
                 world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SAND_BREAK, SoundCategory.BLOCKS, 0.5f, 1f);
@@ -66,7 +66,7 @@ public class BifronicHelper {
         if (random.nextInt(world.getGameRules().getInt(DestroyerGameRules.BIFRONIC_SPREAD_CHANCE)) != 0) {
             return;
         }
-        if (Math.abs(pos.getX()) > 1500 || Math.abs(pos.getZ()) > 1500 || !world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || world.getBiome(pos).matchesId(new Identifier("mushroom_fields")) || world.getBiome(pos).matchesId(new Identifier("primordial_waters"))) {
+        if (world.getBiome(pos).matchesId(new Identifier("primordial_waters")) || Math.abs(pos.getX()) > 1500 || Math.abs(pos.getZ()) > 1500 || !world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || (Math.abs(pos.getX()) + Math.abs(pos.getZ()) > 900 && world.getBiome(pos).matchesId(new Identifier("mushroom_fields")))) {
             return;
         }
         for (int x = -2; x < 3; x++) {
