@@ -16,12 +16,17 @@ public class DestroyerItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> entries.add(ITEM_X));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.BLOCK_X));
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.BIFRONIC_DIRT));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.BIFRONIC_GRASS_BLOCK));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.BIFRONIC_GRASS));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> entries.add(DestroyerBlocks.PLATED_BIFRONIUM));
 
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.BIFRONIC_VEIN));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.DORMANT_BIFRONIC_VEIN));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.BIFRONIC_DIRT));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.DORMANT_BIFRONIC_DIRT));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.BIFRONIC_CARBON));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.DORMANT_BIFRONIC_CARBON));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.BIFRONIC_GRASS_BLOCK));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.DORMANT_BIFRONIC_GRASS_BLOCK));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.BIFRONIC_GRASS));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> entries.add(DestroyerBlocks.DORMANT_BIFRONIC_GRASS));
     }
 }

@@ -1,0 +1,25 @@
+
+{
+  "replace": false,
+  "values": [
+    "#destroyer:pacifies_bifronic_blocks",
+    "minecraft:snow",
+    "minecraft:cake",
+    "minecraft:vine",
+    "minecraft:wither_rose",
+    "minecraft:sculk_vein",
+    "minecraft:sculk_catalyst",
+    "minecraft:sculk_shrieker",
+    "minecraft:sculk_sensor",
+    "minecraft:calibrated_sculk_sensor",
+    "minecraft:sculk",
+    "destroyer:bifronic_dirt",
+    "destroyer:bifronic_grass_block",
+    "destroyer:bifronic_grass",
+    "destroyer:bifronic_vein",
+    "destroyer:dormant_bifronic_dirt",
+    "destroyer:dormant_bifronic_grass_block",
+    "destroyer:dormant_bifronic_grass",
+    "destroyer:dormant_bifronic_vein"
+  ]
+}

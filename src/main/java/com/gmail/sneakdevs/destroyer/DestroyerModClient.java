@@ -10,5 +10,7 @@ public class DestroyerModClient implements ClientModInitializer {
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(DestroyerBlocks.BIFRONIC_GRASS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DestroyerBlocks.DORMANT_BIFRONIC_GRASS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DestroyerBlocks.BIFRONIC_VEIN, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DestroyerBlocks.DORMANT_BIFRONIC_VEIN, RenderLayer.getCutout());
     }
 }

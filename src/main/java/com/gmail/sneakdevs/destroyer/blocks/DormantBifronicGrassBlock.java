@@ -14,8 +14,8 @@ public class DormantBifronicGrassBlock extends Block {
         super(settings);
     }
 
-    public Block getCorruptedVersion(ServerWorld world, BlockPos pos, Random random) {
-        return DestroyerBlocks.BIFRONIC_GRASS_BLOCK;
+    public BlockState getCorruptedVersion(ServerWorld world, BlockPos pos, Random random) {
+        return DestroyerBlocks.BIFRONIC_GRASS_BLOCK.getDefaultState();
     }
 
     @Override

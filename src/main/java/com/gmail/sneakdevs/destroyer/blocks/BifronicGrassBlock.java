@@ -20,8 +20,8 @@ public class BifronicGrassBlock extends Block {
         super(settings);
     }
 
-    public Block getDormantVersion(ServerWorld world, BlockPos pos, Random random) {
-        return DestroyerBlocks.DORMANT_BIFRONIC_GRASS_BLOCK;
+    public BlockState getDormantVersion(ServerWorld world, BlockPos pos, Random random) {
+        return DestroyerBlocks.DORMANT_BIFRONIC_GRASS_BLOCK.getDefaultState();
     }
 
     @Override

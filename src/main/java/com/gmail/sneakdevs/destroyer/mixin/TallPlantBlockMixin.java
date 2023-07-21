@@ -1,6 +1,6 @@
 package com.gmail.sneakdevs.destroyer.mixin;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.TallPlantBlock;
 import net.minecraft.block.enums.DoubleBlockHalf;
@@ -16,10 +16,10 @@ import org.spongepowered.asm.mixin.Shadow;
 public class TallPlantBlockMixin {
 	@Shadow @Final public static EnumProperty<DoubleBlockHalf> HALF;
 
-	public Block getCorruptedVersion(ServerWorld world, BlockPos pos, Random random) {
+	public BlockState getCorruptedVersion(ServerWorld world, BlockPos pos, Random random) {
 		if (random.nextInt(15) == 0 && world.getBlockState(pos).get(HALF) == DoubleBlockHalf.LOWER) {
-			return Blocks.CAKE;
+			return Blocks.CAKE.getDefaultState();
 		}
-		return Blocks.AIR;
+		return Blocks.AIR.getDefaultState();
 	}
 }

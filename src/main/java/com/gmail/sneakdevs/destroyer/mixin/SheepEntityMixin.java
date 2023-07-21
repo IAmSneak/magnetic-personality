@@ -21,4 +21,8 @@ public abstract class SheepEntityMixin extends AnimalEntity {
 	private void initGoalsMixin(CallbackInfo ci) {
 		this.goalSelector.add(5, new EatBifronicGoal(this));
 	}
+
+	public EntityType getCorruptedVersion() {
+		return EntityType.GHAST;
+	}
 }

@@ -1,7 +1,6 @@
 package com.gmail.sneakdevs.destroyer.blocks;
 
 import com.gmail.sneakdevs.destroyer.registry.DestroyerBlocks;
-import com.gmail.sneakdevs.destroyer.registry.DestroyerTags;
 import com.gmail.sneakdevs.destroyer.util.BifronicHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -22,8 +21,8 @@ public class DormantBifronicGrass extends PlantBlock {
         super(settings);
     }
 
-    public Block getCorruptedVersion(ServerWorld world, BlockPos pos, Random random) {
-        return DestroyerBlocks.BIFRONIC_GRASS;
+    public BlockState getCorruptedVersion(ServerWorld world, BlockPos pos, Random random) {
+        return DestroyerBlocks.BIFRONIC_GRASS.getDefaultState();
     }
 
     @Override

@@ -1,0 +1,6 @@
+{
+  "parent": "destroyer:block/vein",
+  "textures": {
+    "vein": "destroyer:block/bifronic_vein"
+  }
+}

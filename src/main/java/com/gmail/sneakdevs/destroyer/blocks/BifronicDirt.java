@@ -14,8 +14,8 @@ public class BifronicDirt extends Block {
         super(settings);
     }
 
-    public Block getDormantVersion(ServerWorld world, BlockPos pos, Random random) {
-        return DestroyerBlocks.DORMANT_BIFRONIC_DIRT;
+    public BlockState getDormantVersion(ServerWorld world, BlockPos pos, Random random) {
+        return DestroyerBlocks.DORMANT_BIFRONIC_DIRT.getDefaultState();
     }
 
     @Override

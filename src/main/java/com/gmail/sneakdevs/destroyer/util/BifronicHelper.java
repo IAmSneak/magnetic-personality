@@ -1,6 +1,7 @@
 package com.gmail.sneakdevs.destroyer.util;
 
 import com.gmail.sneakdevs.destroyer.interfaces.BlockInterface;
+import com.gmail.sneakdevs.destroyer.registry.DestroyerBlocks;
 import com.gmail.sneakdevs.destroyer.registry.DestroyerGameRules;
 import com.gmail.sneakdevs.destroyer.registry.DestroyerTags;
 import net.minecraft.block.BlockState;
@@ -24,17 +25,17 @@ public class BifronicHelper {
         }
         if (world.getBiome(pos).matchesId(new Identifier("primordial_waters")) || Math.abs(pos.getX()) > 1500 || Math.abs(pos.getZ()) > 1500 || !world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || (Math.abs(pos.getX()) + Math.abs(pos.getZ()) > 900 && world.getBiome(pos).matchesId(new Identifier("mushroom_fields")))) {
             if (((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random) != null) {
-                world.setBlockState(pos, ((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random).getDefaultState());
+                world.setBlockState(pos, ((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random));
                 world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SAND_BREAK, SoundCategory.BLOCKS, 0.5f, 1f);
                 return true;
             }
         }
-        for (int x = -2; x < 3; x++) {
-            for (int y = 0; y < 2; y++) {
-                for (int z = -2; z < 3; z++) {
+        for (int x = -3; x < 4; x++) {
+            for (int y = -2; y < 3; y++) {
+                for (int z = -3; z < 4; z++) {
                     if (world.getBlockState(pos.add(x, y, z)).isIn(DestroyerTags.PACIFIES_BIFRONIC_BLOCKS)) {
                         if (((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random) != null) {
-                            world.setBlockState(pos, ((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random).getDefaultState());
+                            world.setBlockState(pos, ((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random));
                             world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SAND_BREAK, SoundCategory.BLOCKS, 0.5f, 1f);
                             return true;
                         }
@@ -45,13 +46,18 @@ public class BifronicHelper {
 
         for (int i = 0; i < 8; ++i) {
             BlockPos spreadPos = pos.add(random.nextInt(7) - 3, random.nextInt(5) - 2, random.nextInt(7) - 3);
-            if (((BlockInterface)world.getBlockState(spreadPos).getBlock()).getCorruptedVersion(world, spreadPos, random) != null) {
-                world.setBlockState(spreadPos, ((BlockInterface)world.getBlockState(spreadPos).getBlock()).getCorruptedVersion(world, spreadPos, random).getDefaultState());
+            if (((BlockInterface)world.getBlockState(spreadPos).getBlock()).getCorruptedVersion(world, spreadPos, random) != null && !world.getBlockState(spreadPos).isIn(DestroyerTags.DORMANT_BIFRONIC_BLOCKS)) {
+                world.setBlockState(spreadPos, ((BlockInterface)world.getBlockState(spreadPos).getBlock()).getCorruptedVersion(world, spreadPos, random));
                 world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SOIL_PLACE, SoundCategory.BLOCKS, 0.5f, 1f);
                 return true;
             }
             if (world.getBlockState(spreadPos).isIn(BlockTags.SMALL_FLOWERS)) {
                 world.setBlockState(spreadPos, Blocks.WITHER_ROSE.getDefaultState());
+                world.playSound(null, pos, SoundEvents.ENTITY_WITHER_SKELETON_STEP, SoundCategory.BLOCKS, 0.5f, 1f);
+                return true;
+            }
+            if (world.getBlockState(spreadPos).isAir() && DestroyerBlocks.BIFRONIC_VEIN.canPlaceAt(world.getBlockState(spreadPos), world, spreadPos)) {
+                world.setBlockState(spreadPos, DestroyerBlocks.BIFRONIC_VEIN.getDefaultState());
                 world.playSound(null, pos, SoundEvents.ENTITY_WITHER_SKELETON_STEP, SoundCategory.BLOCKS, 0.5f, 1f);
                 return true;
             }
@@ -69,9 +75,9 @@ public class BifronicHelper {
         if (world.getBiome(pos).matchesId(new Identifier("primordial_waters")) || Math.abs(pos.getX()) > 1500 || Math.abs(pos.getZ()) > 1500 || !world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || (Math.abs(pos.getX()) + Math.abs(pos.getZ()) > 900 && world.getBiome(pos).matchesId(new Identifier("mushroom_fields")))) {
             return;
         }
-        for (int x = -2; x < 3; x++) {
-            for (int y = 0; y < 2; y++) {
-                for (int z = -2; z < 3; z++) {
+        for (int x = -3; x < 4; x++) {
+            for (int y = -2; y < 3; y++) {
+                for (int z = -3; z < 4; z++) {
                     if (world.getBlockState(pos.add(x, y, z)).isIn(DestroyerTags.PACIFIES_BIFRONIC_BLOCKS)) {
                         return;
                     }
@@ -79,7 +85,7 @@ public class BifronicHelper {
             }
         }
         if (((BlockInterface) world.getBlockState(pos).getBlock()).getCorruptedVersion(world, pos, random) != null) {
-            world.setBlockState(pos, ((BlockInterface) world.getBlockState(pos).getBlock()).getCorruptedVersion(world, pos, random).getDefaultState());
+            world.setBlockState(pos, ((BlockInterface) world.getBlockState(pos).getBlock()).getCorruptedVersion(world, pos, random));
             world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SAND_PLACE, SoundCategory.BLOCKS, 0.5f, 1f);
         }
     }

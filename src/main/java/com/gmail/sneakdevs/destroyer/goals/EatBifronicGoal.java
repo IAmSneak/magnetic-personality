@@ -1,12 +1,15 @@
 package com.gmail.sneakdevs.destroyer.goals;
 
+import com.gmail.sneakdevs.destroyer.interfaces.MobEntityInterface;
 import com.gmail.sneakdevs.destroyer.registry.DestroyerBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.mob.GhastEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
@@ -79,8 +82,9 @@ public class EatBifronicGoal extends Goal {
 
                     this.mob.onEatingGrass();
 
-                    this.mob.convertTo(EntityType.GHAST, false);
-                    this.mob.setHealth(50F);
+                    this.mob.convertTo(((MobEntityInterface)(this.mob)).getCorruptedVersion(), false);
+                    this.mob.setHealth(100F);
+                    this.mob.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 240, 8));
                     this.mob.setPersistent();
 
                 }

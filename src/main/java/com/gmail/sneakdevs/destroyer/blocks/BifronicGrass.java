@@ -2,7 +2,6 @@ package com.gmail.sneakdevs.destroyer.blocks;
 
 import com.gmail.sneakdevs.destroyer.registry.DestroyerBlocks;
 import com.gmail.sneakdevs.destroyer.util.BifronicHelper;
-import com.gmail.sneakdevs.destroyer.registry.DestroyerTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PlantBlock;
@@ -29,8 +28,8 @@ public class BifronicGrass extends PlantBlock {
         super(settings);
     }
 
-    public Block getDormantVersion(ServerWorld world, BlockPos pos, Random random) {
-        return DestroyerBlocks.DORMANT_BIFRONIC_GRASS;
+    public BlockState getDormantVersion(ServerWorld world, BlockPos pos, Random random) {
+        return DestroyerBlocks.DORMANT_BIFRONIC_GRASS.getDefaultState();
     }
 
     @Override
@@ -60,7 +59,7 @@ public class BifronicGrass extends PlantBlock {
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 120, 1));
                 }
                 if (livingEntity.isUndead()) {
-                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 120, 1));
+                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 120, 1));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 120, 1));
                 }
             }
