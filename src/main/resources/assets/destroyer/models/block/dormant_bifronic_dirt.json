@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "destroyer:block/dormant_bifronic_dirt"
+  }
+}

@@ -1,0 +1,12 @@
+{
+	"item.destroyer.item_x" : "Item X",
+	"block.destroyer.block_x" : "Block X",
+	"block.destroyer.bifronic_dirt" : "Bifronic Dirt",
+	"block.destroyer.bifronic_grass_block" : "Bifronic Grass Block",
+	"block.destroyer.bifronic_sand" : "Bifronic Sand",
+	"block.destroyer.bifronic_grass" : "Bifronic Grass",
+	"block.destroyer.dormant_bifronic_dirt" : "Dormant Bifronic Dirt",
+	"block.destroyer.dormant_bifronic_grass_block" : "Dormant Bifronic Grass Block",
+	"block.destroyer.dormant_bifronic_sand" : "Dormant Bifronic Sand",
+	"block.destroyer.dormant_bifronic_grass" : "Dormant Bifronic Grass"
+}

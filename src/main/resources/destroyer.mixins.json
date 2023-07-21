@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.gmail.sneakdevs.destroyer.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BlockMixin",
+    "BlocksMixin",
+    "FernBlockMixin",
+    "GrassBlockMixin",
+    "SandBlockMixin",
+    "TallPlantBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

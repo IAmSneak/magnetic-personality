@@ -1,12 +1,23 @@
 {
   "schemaVersion": 1,
-  "id": "itemmagnet",
-  "name": "Item Magnet",
+  "id": "destroyer",
+  "name": "Destroyer of Worlds",
   "version": "${version}",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.gmail.sneakdevs.itemmagnet.ItemMagnetMod"
+      "com.gmail.sneakdevs.destroyer.DestroyerMod"
+    ],
+    "client": [
+      "com.gmail.sneakdevs.destroyer.DestroyerModClient"
     ]
+  },
+  "mixins": [
+    "destroyer.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "java": ">=17"
   }
 }
