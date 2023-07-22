@@ -3,6 +3,7 @@
   "replace": false,
   "values": [
     "minecraft:netherite_block",
+    "minecraft:dragon_egg",
     "destroyer:plated_bifronium"
   ]
 }
