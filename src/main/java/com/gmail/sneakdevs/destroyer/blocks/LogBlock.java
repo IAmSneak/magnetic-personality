@@ -16,5 +16,4 @@ public class LogBlock extends PillarBlock {
     public BlockState getCorruptedVersion(ServerWorld world, BlockPos pos, Random random) {
         return DestroyerBlocks.BIFRONIC_CARBON.getDefaultState();
     }
-
 }

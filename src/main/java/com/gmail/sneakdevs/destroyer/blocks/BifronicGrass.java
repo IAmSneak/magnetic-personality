@@ -11,8 +11,13 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
@@ -57,6 +62,7 @@ public class BifronicGrass extends PlantBlock {
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 120, 2));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 60, 0));
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 120, 1));
+                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 120, 1));
                 }
                 if (livingEntity.isUndead()) {
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 120, 1));
@@ -64,5 +70,15 @@ public class BifronicGrass extends PlantBlock {
                 }
             }
         }
+    }
+
+    @Override
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        world.setBlockState(pos, getDormantVersion(world, pos, random));
+        for (int yB = world.getBottomY(); yB < world.getTopY(); yB += 2) {
+            BifronicHelper.setBiome(world, pos.getX(), yB, pos.getZ(), world.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(RegistryKey.of(RegistryKeys.BIOME, new Identifier("destroyer", "tainted_barrens"))).orElse(null), BifronicHelper::updateChunk);
+        }
+        world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SAND_BREAK, SoundCategory.BLOCKS, 0.5f, 1f);
+        super.scheduledTick(state, world, pos, random);
     }
 }

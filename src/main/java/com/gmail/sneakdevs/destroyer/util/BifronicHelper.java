@@ -5,6 +5,7 @@ import com.gmail.sneakdevs.destroyer.mixin.BiomeAccessAccessor;
 import com.gmail.sneakdevs.destroyer.registry.DestroyerBlocks;
 import com.gmail.sneakdevs.destroyer.registry.DestroyerGameRules;
 import com.gmail.sneakdevs.destroyer.registry.DestroyerTags;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryKey;
@@ -35,59 +36,90 @@ public class BifronicHelper {
         if (random.nextInt(world.getGameRules().getInt(DestroyerGameRules.BIFRONIC_SPREAD_CHANCE)) != 0) {
             return false;
         }
-        if (!world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || Math.pow(Math.abs(pos.getX()), 2) + Math.pow(Math.abs(pos.getZ()), 2) > 1440000) {
-            if (((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random) != null) {
-                world.setBlockState(pos, ((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random));
+        if (pos.getY() < 15 || !world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || Math.pow(Math.abs(pos.getX()), 2) + Math.pow(Math.abs(pos.getZ()), 2) > 1440000) {
+            if (((BlockInterface) state.getBlock()).getDormantVersion(world, pos, random) != null) {
+                world.setBlockState(pos, ((BlockInterface) state.getBlock()).getDormantVersion(world, pos, random));
                 world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SAND_BREAK, SoundCategory.BLOCKS, 0.5f, 1f);
                 return true;
             }
         }
 
-        for (int x = -3; x < 4; x++) {
-            for (int y = -2; y < 3; y++) {
-                for (int z = -3; z < 4; z++) {
-                    if (world.getBlockState(pos.add(x, y, z)).isIn(DestroyerTags.PACIFIES_BIFRONIC_BLOCKS)) {
-                        if (((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random) != null) {
-                            world.setBlockState(pos, ((BlockInterface) world.getBlockState(pos).getBlock()).getDormantVersion(world, pos, random));
-                            for (int yB = world.getBottomY(); yB < world.getTopY(); yB+=2) {
-                                setBiome(world, pos.getX(), yB, pos.getZ(), world.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(RegistryKey.of(RegistryKeys.BIOME, new Identifier("destroyer", "tainted_barrens"))).orElse(null), BifronicHelper::updateChunk);
-                            }
-                            world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SAND_BREAK, SoundCategory.BLOCKS, 0.5f, 1f);
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-
         for (int i = 0; i < 8; ++i) {
             BlockPos spreadPos = pos.add(random.nextInt(7) - 3, random.nextInt(5) - 2, random.nextInt(7) - 3);
-            for (int x = -1; x < 2; x++) {
-                for (int y = -2; y < 1; y++) {
-                    for (int z = -1; z < 2; z++) {
-                        if (world.getBiome(spreadPos.add(x, y, z)).matchesId(new Identifier("destroyer", "primordial_ocean"))) {
-                            return false;
+            BlockState spreadState = world.getBlockState(spreadPos);
+            if (((BlockInterface)spreadState.getBlock()).getCorruptedVersion(world, spreadPos, random) != null && !spreadState.isIn(DestroyerTags.DORMANT_BIFRONIC_BLOCKS)) {
+                for (int x = -1; x < 2; x++) {
+                    for (int y = -2; y < 1; y++) {
+                        for (int z = -1; z < 2; z++) {
+                            if (world.getBiome(spreadPos.add(x, y, z)).matchesId(new Identifier("destroyer", "primordial_ocean"))) {
+                                return false;
+                            }
                         }
                     }
                 }
-            }
-            if (((BlockInterface)world.getBlockState(spreadPos).getBlock()).getCorruptedVersion(world, spreadPos, random) != null && !world.getBlockState(spreadPos).isIn(DestroyerTags.DORMANT_BIFRONIC_BLOCKS)) {
-                world.setBlockState(spreadPos, ((BlockInterface)world.getBlockState(spreadPos).getBlock()).getCorruptedVersion(world, spreadPos, random));
+                for (int x = -3; x < 4; x++) {
+                    for (int y = -9; y < 3; y++) {
+                        for (int z = -3; z < 4; z++) {
+                            if (world.getBlockState(pos.add(x, y, z)).isIn(DestroyerTags.PACIFIES_BIFRONIC_BLOCKS)) {
+                                if (((BlockInterface) state.getBlock()).getDormantVersion(world, pos, random) != null) {
+                                    world.setBlockState(pos, ((BlockInterface) state.getBlock()).getDormantVersion(world, pos, random));
+                                    for (int yB = world.getBottomY(); yB < world.getTopY(); yB+=2) {
+                                        setBiome(world, pos.getX(), yB, pos.getZ(), world.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(RegistryKey.of(RegistryKeys.BIOME, new Identifier("destroyer", "tainted_barrens"))).orElse(null), BifronicHelper::updateChunk);
+                                    }
+                                    world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SAND_BREAK, SoundCategory.BLOCKS, 0.5f, 1f);
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+                world.setBlockState(spreadPos, ((BlockInterface)spreadState.getBlock()).getCorruptedVersion(world, spreadPos, random));
+                int spreadPosX = spreadPos.getX();
+                int spreadPosZ = spreadPos.getZ();
+                RegistryEntry<Biome> biome = world.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(RegistryKey.of(RegistryKeys.BIOME, new Identifier("destroyer", "forsaken_acres"))).orElse(null);
                 for (int y = world.getBottomY(); y < world.getTopY(); y+=2) {
-                    setBiome(world, spreadPos.getX(), y, spreadPos.getZ(), world.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(RegistryKey.of(RegistryKeys.BIOME, new Identifier("destroyer", "forsaken_acres"))).orElse(null), BifronicHelper::updateChunk);
+                    setBiome(world, spreadPosX, y, spreadPosZ, biome, BifronicHelper::updateChunk);
                 }
                 world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SOIL_PLACE, SoundCategory.BLOCKS, 0.5f, 1f);
                 return true;
             }
-            if (world.getBlockState(spreadPos).isIn(BlockTags.SMALL_FLOWERS)) {
+            if (spreadState.isIn(BlockTags.SMALL_FLOWERS)) {
                 world.setBlockState(spreadPos, Blocks.WITHER_ROSE.getDefaultState());
                 world.playSound(null, pos, SoundEvents.ENTITY_WITHER_SKELETON_STEP, SoundCategory.BLOCKS, 0.5f, 1f);
                 return true;
             }
-            if (world.getBlockState(spreadPos).isAir() && DestroyerBlocks.BIFRONIC_VEIN.canPlaceAt(world.getBlockState(spreadPos), world, spreadPos)) {
+            if (spreadState.isAir() && DestroyerBlocks.BIFRONIC_VEIN.canPlaceAt(spreadState, world, spreadPos)) {
+                for (int x = -1; x < 2; x++) {
+                    for (int y = -2; y < 1; y++) {
+                        for (int z = -1; z < 2; z++) {
+                            if (world.getBiome(spreadPos.add(x, y, z)).matchesId(new Identifier("destroyer", "primordial_ocean"))) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+                for (int x = -3; x < 4; x++) {
+                    for (int y = -9; y < 3; y++) {
+                        for (int z = -3; z < 4; z++) {
+                            if (world.getBlockState(pos.add(x, y, z)).isIn(DestroyerTags.PACIFIES_BIFRONIC_BLOCKS)) {
+                                if (((BlockInterface) state.getBlock()).getDormantVersion(world, pos, random) != null) {
+                                    world.setBlockState(pos, ((BlockInterface) state.getBlock()).getDormantVersion(world, pos, random));
+                                    for (int yB = world.getBottomY(); yB < world.getTopY(); yB+=2) {
+                                        setBiome(world, pos.getX(), yB, pos.getZ(), world.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(RegistryKey.of(RegistryKeys.BIOME, new Identifier("destroyer", "tainted_barrens"))).orElse(null), BifronicHelper::updateChunk);
+                                    }
+                                    world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SAND_BREAK, SoundCategory.BLOCKS, 0.5f, 1f);
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
                 world.setBlockState(spreadPos, DestroyerBlocks.BIFRONIC_VEIN.getDefaultState());
+                int spreadPosX = spreadPos.getX();
+                int spreadPosZ = spreadPos.getZ();
+                RegistryEntry<Biome> biome = world.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(RegistryKey.of(RegistryKeys.BIOME, new Identifier("destroyer", "forsaken_acres"))).orElse(null);
                 for (int y = world.getBottomY(); y < world.getTopY(); y+=2) {
-                    setBiome(world, spreadPos.getX(), y, spreadPos.getZ(), world.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(RegistryKey.of(RegistryKeys.BIOME, new Identifier("destroyer", "forsaken_acres"))).orElse(null), BifronicHelper::updateChunk);
+                    setBiome(world, spreadPosX, y, spreadPosZ, biome, BifronicHelper::updateChunk);
                 }
                 world.playSound(null, pos, SoundEvents.ENTITY_WITHER_SKELETON_STEP, SoundCategory.BLOCKS, 0.5f, 1f);
                 return true;
@@ -103,15 +135,16 @@ public class BifronicHelper {
         if (random.nextInt(world.getGameRules().getInt(DestroyerGameRules.BIFRONIC_SPREAD_CHANCE)) != 0) {
             return;
         }
-        if (!world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || Math.pow(Math.abs(pos.getX()), 2) + Math.pow(Math.abs(pos.getZ()), 2) > 1440000) {
+
+        if (pos.getY() < 15) {
             return;
         }
-        if (pos.getY() <= 0) {
+        if (!world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || Math.pow(Math.abs(pos.getX()), 2) + Math.pow(Math.abs(pos.getZ()), 2) > 1440000) {
             return;
         }
 
         for (int x = -3; x < 4; x++) {
-            for (int y = -2; y < 3; y++) {
+            for (int y = -9; y < 2; y++) {
                 for (int z = -3; z < 4; z++) {
                     if (world.getBlockState(pos.add(x, y, z)).isIn(DestroyerTags.PACIFIES_BIFRONIC_BLOCKS)) {
                         return;
@@ -119,6 +152,7 @@ public class BifronicHelper {
                 }
             }
         }
+
         for (int x = -1; x < 2; x++) {
             for (int y = -2; y < 1; y++) {
                 for (int z = -1; z < 2; z++) {
@@ -128,8 +162,8 @@ public class BifronicHelper {
                 }
             }
         }
-        if (((BlockInterface) world.getBlockState(pos).getBlock()).getCorruptedVersion(world, pos, random) != null) {
-            world.setBlockState(pos, ((BlockInterface) world.getBlockState(pos).getBlock()).getCorruptedVersion(world, pos, random));
+        if (((BlockInterface) state.getBlock()).getCorruptedVersion(world, pos, random) != null) {
+            world.setBlockState(pos, ((BlockInterface) state.getBlock()).getCorruptedVersion(world, pos, random));
             for (int y = world.getBottomY(); y < world.getTopY(); y+=2) {
                 setBiome(world, pos.getX(), y, pos.getZ(), world.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(RegistryKey.of(RegistryKeys.BIOME, new Identifier("destroyer", "forsaken_acres"))).orElse(null), BifronicHelper::updateChunk);
             }

@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iWi",
+        "WNW",
+        "iWi"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_block"
+        },
+        "W": {
+            "item": "destroyer:bifronic_straw"
+        },
+        "N": {
+            "item": "minecraft:netherite_scrap"
+        }
+    },
+    "result": {
+        "item": "destroyer:bifronium",
+        "count": 4
+    }
+}

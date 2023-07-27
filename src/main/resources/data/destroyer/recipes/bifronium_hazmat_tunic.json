@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# #",
+        "D#D",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "destroyer:bifronium"
+        },
+        "D": {
+            "item": "minecraft:diamond_block"
+        }
+    },
+    "result": {
+        "item": "destroyer:bifronium_hazmat_tunic",
+        "count": 1
+    }
+}

@@ -17,9 +17,11 @@
     "destroyer:bifronic_grass_block",
     "destroyer:bifronic_grass",
     "destroyer:bifronic_vein",
+    "destroyer:bifronic_carbon",
     "destroyer:dormant_bifronic_dirt",
     "destroyer:dormant_bifronic_grass_block",
     "destroyer:dormant_bifronic_grass",
-    "destroyer:dormant_bifronic_vein"
+    "destroyer:dormant_bifronic_vein",
+    "destroyer:dormant_bifronic_carbon"
   ]
 }

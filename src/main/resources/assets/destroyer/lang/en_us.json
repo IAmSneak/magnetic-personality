@@ -1,4 +1,10 @@
 {
+	"item.destroyer.bifronic_straw" : "Bifronic Straw",
+	"item.destroyer.bifronium" : "Bifronium",
+	"item.destroyer.bifronium_hazmat_cap" : "Bifronium Hazmat Cap",
+	"item.destroyer.bifronium_hazmat_tunic" : "Bifronium Hazmat Tunic",
+	"item.destroyer.bifronium_hazmat_leggings" : "Bifronium Hazmat Leggings",
+	"item.destroyer.bifronium_hazmat_boots" : "Bifronium Hazmat Boots",
 	"item.destroyer.item_x" : "Item X",
 	"block.destroyer.block_x" : "Block X",
 	"block.destroyer.bifronic_dirt" : "Bifronic Dirt",

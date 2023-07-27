@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#A#",
+        "gng",
+        "#A#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_block"
+        },
+        "A": {
+            "item": "minecraft:amethyst_shard"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "n": {
+            "item": "destroyer:bifronium"
+        }
+    },
+    "result": {
+        "item": "destroyer:plated_bifronium",
+        "count": 1
+    }
+}

@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 public class DestroyerBlocks {
     public static final BlockX BLOCK_X = Registry.register(Registries.BLOCK, new Identifier(DestroyerMod.MODID, "block_x"), new BlockX(FabricBlockSettings.create().strength(-1F)));
 
-    public static final Block PLATED_BIFRONIUM = Registry.register(Registries.BLOCK, new Identifier(DestroyerMod.MODID, "plated_bifronium"), new Block(FabricBlockSettings.create().strength(.8F)));
+    public static final BifronicPacifier PLATED_BIFRONIUM = Registry.register(Registries.BLOCK, new Identifier(DestroyerMod.MODID, "plated_bifronium"), new BifronicPacifier(FabricBlockSettings.create().strength(1.2F).requiresTool()));
 
     public static final BifronicDirt BIFRONIC_DIRT = Registry.register(Registries.BLOCK, new Identifier(DestroyerMod.MODID, "bifronic_dirt"), new BifronicDirt(FabricBlockSettings.create().strength(.8F).sounds(BlockSoundGroup.ROOTED_DIRT)));
     public static final DormantBifronicDirt DORMANT_BIFRONIC_DIRT = Registry.register(Registries.BLOCK, new Identifier(DestroyerMod.MODID, "dormant_bifronic_dirt"), new DormantBifronicDirt(FabricBlockSettings.create().strength(.8F).sounds(BlockSoundGroup.ROOTED_DIRT)));
