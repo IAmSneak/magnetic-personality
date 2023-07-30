@@ -28,7 +28,7 @@ public class BifronicPacifier extends Block {
         if (world instanceof ServerWorld serverWorld) {
             Random random = serverWorld.getRandom();
             for (int x = -3; x < 4; x++) {
-                for (int y = -9; y < 2; y++) {
+                for (int y = -9; y < 3; y++) {
                     for (int z = -3; z < 4; z++) {
                         BlockPos bifPos = pos.add(x, y, z);
                         BlockState bifState = world.getBlockState(bifPos);

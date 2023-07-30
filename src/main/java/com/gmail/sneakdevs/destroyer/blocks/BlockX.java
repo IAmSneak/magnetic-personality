@@ -1,6 +1,7 @@
 package com.gmail.sneakdevs.destroyer.blocks;
 
 import com.gmail.sneakdevs.destroyer.registry.DestroyerBlocks;
+import com.gmail.sneakdevs.destroyer.registry.DestroyerGameRules;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -20,6 +21,9 @@ public class BlockX extends Block {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if (!world.getGameRules().getBoolean(DestroyerGameRules.BLOCK_X_CREATABLE)) {
+            return;
+        }
         boolean didSpread = false;
         for (int i = 0; i < 8; i++) {
             int xOffset = random.nextInt(15) - 7;

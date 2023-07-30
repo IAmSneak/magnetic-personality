@@ -36,7 +36,7 @@ public class BifronicHelper {
         if (random.nextInt(world.getGameRules().getInt(DestroyerGameRules.BIFRONIC_SPREAD_CHANCE)) != 0) {
             return false;
         }
-        if (pos.getY() < 15 || !world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || Math.pow(Math.abs(pos.getX()), 2) + Math.pow(Math.abs(pos.getZ()), 2) > 1440000) {
+        if ((pos.getY() < 15 && !world.isSkyVisible(pos)) || !world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || Math.pow(Math.abs(pos.getX()), 2) + Math.pow(Math.abs(pos.getZ()), 2) > 1440000) {
             if (((BlockInterface) state.getBlock()).getDormantVersion(world, pos, random) != null) {
                 world.setBlockState(pos, ((BlockInterface) state.getBlock()).getDormantVersion(world, pos, random));
                 world.playSound(null, pos, SoundEvents.BLOCK_SOUL_SAND_BREAK, SoundCategory.BLOCKS, 0.5f, 1f);
@@ -58,7 +58,7 @@ public class BifronicHelper {
                     }
                 }
                 for (int x = -3; x < 4; x++) {
-                    for (int y = -9; y < 3; y++) {
+                    for (int y = -2; y < 10; y++) {
                         for (int z = -3; z < 4; z++) {
                             if (world.getBlockState(pos.add(x, y, z)).isIn(DestroyerTags.PACIFIES_BIFRONIC_BLOCKS)) {
                                 if (((BlockInterface) state.getBlock()).getDormantVersion(world, pos, random) != null) {
@@ -99,7 +99,7 @@ public class BifronicHelper {
                     }
                 }
                 for (int x = -3; x < 4; x++) {
-                    for (int y = -9; y < 3; y++) {
+                    for (int y = -2; y < 10; y++) {
                         for (int z = -3; z < 4; z++) {
                             if (world.getBlockState(pos.add(x, y, z)).isIn(DestroyerTags.PACIFIES_BIFRONIC_BLOCKS)) {
                                 if (((BlockInterface) state.getBlock()).getDormantVersion(world, pos, random) != null) {
@@ -136,7 +136,7 @@ public class BifronicHelper {
             return;
         }
 
-        if (pos.getY() < 15) {
+        if (pos.getY() < 15 && !world.isSkyVisible(pos)) {
             return;
         }
         if (!world.getDimensionEntry().matchesId(DimensionTypes.OVERWORLD_ID) || Math.pow(Math.abs(pos.getX()), 2) + Math.pow(Math.abs(pos.getZ()), 2) > 1440000) {
@@ -144,7 +144,7 @@ public class BifronicHelper {
         }
 
         for (int x = -3; x < 4; x++) {
-            for (int y = -9; y < 2; y++) {
+            for (int y = -2; y < 10; y++) {
                 for (int z = -3; z < 4; z++) {
                     if (world.getBlockState(pos.add(x, y, z)).isIn(DestroyerTags.PACIFIES_BIFRONIC_BLOCKS)) {
                         return;

@@ -93,7 +93,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity{
                 pureWaterTime++;
                 pe.sendMessageToClient(Text.literal("You are being sterilized. Await your fate. " + (int)(pureWaterTime * .1)).formatted(Formatting.BOLD).formatted(Formatting.GOLD), true);
                 pe.addExperience(1);
-                if (pureWaterTime > 4900 || random.nextInt(5000 - pureWaterTime) == 0) {
+                if (pureWaterTime > 4900 || random.nextInt(5000 - pureWaterTime * 4) == 0) {
                     pe.sendMessageToClient(Text.literal("Your body has been sterilized.").formatted(Formatting.BOLD).formatted(Formatting.GOLD), true);
                     MinecraftServer server = pe.getServer();
                     if (server != null) {
